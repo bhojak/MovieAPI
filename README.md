@@ -14,8 +14,6 @@ Dagger Hilt,
 
 MVVM + Repository Pattern,
 
-Packaging by Feature,
-
 Pagination 3,
 
 Room,
