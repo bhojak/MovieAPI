@@ -2,7 +2,7 @@
 
 This project demonstrats various cutting edge technologies such as Coroutines Flow, Dagger Hilt, Pagination(Lazy Loading) and Offline-first strategies on Android.
 
-The app uses MoviedbApi to fetch and show the newest released movies with the ability to order them by release date.
+The app uses MoviedbApi to fetch and show the Now Playing movies.
 
 ## Tools & Technologies
 
