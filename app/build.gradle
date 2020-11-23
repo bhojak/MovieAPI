@@ -1,0 +1,115 @@
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
+    id 'dagger.hilt.android.plugin'
+}
+
+
+
+android {
+
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.bhupen.moviedisplaylist"
+
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        /*
+    This key should be put in key.properties file
+    or
+    Get secured using other various methods
+    ****but I just added it here for the sake of simplicity.****
+ */
+        buildConfigField("String", "API_KEY", "\"3fa9058382669f72dcb18fb405b7a831\"")
+
+        //can later config in buildTypes to hit different urls for stage and production
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequiresOptIn"]
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation libraries.kotlinStdLib
+    implementation libraries.ktxCore
+    implementation libraries.appCompat
+    implementation libraries.constraintLayout
+    implementation libraries.legacySupport
+    implementation libraries.materialDesign
+    implementation libraries.glide
+
+    implementation libraries.retrofit
+    implementation libraries.gsonConverterFactory
+    implementation libraries.dagger
+    implementation libraries.daggerHilt
+    implementation libraries.daggerHiltAndroid
+    implementation libraries.timber
+    implementation libraries.coroutineCore
+    implementation libraries.coroutineAndroid
+    implementation libraries.coroutineCallAdapter
+    implementation libraries.loggingInterceptor
+    implementation libraries.gson
+
+
+    coreLibraryDesugaring libraries.jdkDesugar
+
+    //Jetpack
+    implementation archComponentLibraries.navFragment
+    implementation archComponentLibraries.navUi
+    implementation archComponentLibraries.lifecycleViewModel
+    implementation archComponentLibraries.lifecyclerLiveData
+    implementation archComponentLibraries.lifecycleRuntime
+    implementation archComponentLibraries.room
+    implementation archComponentLibraries.roomKtx
+    implementation archComponentLibraries.paging
+
+    //Kapt
+    kapt libraries.daggerCompiler
+    kapt libraries.daggerHiltCompiler
+    kapt libraries.daggerHiltAndroidCompiler
+    kapt archComponentLibraries.roomCompiler
+    kapt libraries.glideCompiler
+
+
+
+    //Test
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockito
+    testImplementation testLibraries.archCoreTesting
+    testImplementation testLibraries.coroutineTest
+    testImplementation testLibraries.roboElectric
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.androidXextJunit
+    testImplementation testLibraries.androidXCoreKtx
+    testImplementation testLibraries.androidXextJunit
+
+    androidTestImplementation testLibraries.androidXextJunit
+    androidTestImplementation testLibraries.espresso_core
+
+}

@@ -1,0 +1,38 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    apply from: 'dependencies.gradle'
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath buildPlugins.androidGradlePlugin
+        classpath buildPlugins.kotlinGradlePlugin
+        classpath buildPlugins.benManesVersionManagement
+        classpath buildPlugins.navigationSafeArgsPlugin
+        classpath buildPlugins.scabbard
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.29.1-alpha'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+apply plugin: "scabbard.gradle"
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+    //If remains true, Apply code will not run
+    scabbard {
+        enabled true
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
