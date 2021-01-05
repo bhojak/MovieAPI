@@ -1,6 +1,5 @@
 package com.bhupen.moviedisplaylist.data
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -43,7 +42,6 @@ class MovieRemoteMediator(
         val page = computePageNumber(loadType, state)
         when (val apiResult = remoteDataSource.fetch(sort = sortBy, page = page)) {
             is DataResult.Success -> {
-                Log.e("Result", apiResult.toString())
                 val moviesFromNetwork = apiResult.data.results
                 val endOfPaginationReached = moviesFromNetwork.isEmpty()
                 database.withTransaction {
@@ -59,7 +57,6 @@ class MovieRemoteMediator(
                 )
             }
             is DataResult.Error -> {
-                Log.e("Result", apiResult.e.toString())
                 return MediatorResult.Error(
                     apiResult.e
                 )

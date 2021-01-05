@@ -1,6 +1,7 @@
 package com.bhupen.moviedisplaylist.data.remote
 
 
+import com.bhupen.moviedisplaylist.data.remote.dto.MovieDetailDTO
 import com.bhupen.moviedisplaylist.data.remote.dto.MovieResponseDTO
 import retrofit2.Response
 import retrofit2.http.GET
@@ -22,7 +23,7 @@ interface MovieApi {
     suspend fun getMovieDetail(
         @Path("movie_id") movie_Id: Int,
         @Query("language") language: String = "en"
-    ): Response<MovieResponseDTO>
+    ): Response<MovieDetailDTO>
 
     @GET("collection/{collection_id}")
     suspend fun getCollection(
